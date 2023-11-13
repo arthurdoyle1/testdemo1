@@ -57,9 +57,16 @@
 
         // display Carto basemap tiles with light features and labels
         var light = L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
-        }).addTo(map); // EDIT - insert or remove ".addTo(map)" before the last semicolon to display by default
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
+        noWrap: true, // Prevent tiles from wrapping
+        bounds: [
+            [-90, -180],
+            [90, 180]
+            ]
+            }).addTo(map);
+
         controlLayers.addBaseLayer(light, 'Carto Light basemap');
+
 
         /* Stamen colored terrain basemap tiles with labels */
         var terrain = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', {
