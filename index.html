@@ -58,7 +58,7 @@
   var categoryLayers = {};
 
   // Read markers data from data.csv
-  $.get('./data.csv', function(csvString) {
+  $.get('data.csv', function(csvString) {
 
     // Use PapaParse to convert string to array of objects
     var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
@@ -74,12 +74,17 @@
 
       // Check if the category layer exists, if not, create it
       if (!categoryLayers[row.Category]) {
-        categoryLayers[row.Category] = L.layerGroup().addTo(map);
+        categoryLayers[row.Category] = L.layerGroup();
         controlLayers.addOverlay(categoryLayers[row.Category], row.Category);
       }
 
       // Add the marker to the corresponding category layer
       marker.addTo(categoryLayers[row.Category]);
+    }
+
+    // Add the category layers to the map
+    for (var category in categoryLayers) {
+      map.addLayer(categoryLayers[category]);
     }
 
   });
