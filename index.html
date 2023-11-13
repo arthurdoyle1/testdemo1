@@ -46,11 +46,13 @@
             zoom: 4, // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
             scrollWheelZoom: true,
             worldCopyJump: false
-               maxBounds: [
-                    [-90, -180],
-                    [90, 180]
-            ]
         });
+
+            map.setMaxBounds([
+        [-90, -180],
+        [90, 180]
+    ]);
+
 
         /* Control panel to display map layers */
         var controlLayers = L.control.layers(null, null, {
