@@ -39,6 +39,7 @@
     <div id="map"></div>
 
     <!-- Insert Javascript (.js) code to create the map -->
+    
 <script>
     // Set up initial map center and zoom level
     var map = L.map('map', {
@@ -66,14 +67,14 @@
     }); // EDIT - insert or remove ".addTo(map)" before the last semicolon to display by default
     controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
 
-    // Define a green leaf icon
-    var greenLeafIcon = L.icon({
-        iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
-        iconSize: [38, 95],
-        iconAnchor: [22, 94],
-        shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
-        shadowSize: [50, 64],
-        shadowAnchor: [4, 62]
+    // Define leaf icons based on earthquake magnitude
+    var leafIcons = L.Icon.extend({
+        options: {
+            iconSize: [38, 95],
+            iconAnchor: [22, 94],
+            shadowSize: [50, 64],
+            shadowAnchor: [4, 62]
+        }
     });
 
     // Create an object to store layers by category
@@ -93,9 +94,14 @@
         for (var i in data) {
             var row = data[i];
 
+            // Determine the icon based on magnitude
+            var iconUrl = row.Magnitude < 4.6 ?
+                'https://leafletjs.com/examples/custom-icons/leaf-green.png' :
+                'https://leafletjs.com/examples/custom-icons/leaf-red.png';
+
             var marker = L.marker([row.Latitude, row.Longitude], {
                 opacity: 1,
-                icon: greenLeafIcon // Set the green leaf icon for the marker
+                icon: new leafIcons({ iconUrl: iconUrl })
             }).bindPopup(row.Title);
 
             // Check if the category layer exists, if not, create it
