@@ -100,14 +100,15 @@
                 }
 
                 // Create a marker with a custom icon based on the category
-                var marker = L.marker([row.Latitude, row.Longitude], {
-                    opacity: 1,
+                var marker = L.marker([parseFloat(row.Latitude), parseFloat(row.Longitude) + 360], {
+                opacity: 1,
                     icon: L.icon({
                         iconUrl: iconUrls[row.Category],
-                        iconSize: [20, 20],
-                        iconAnchor: [20, 0],
-                    })
+                    iconSize: [20, 20],
+                    iconAnchor: [20, 0],
+                        })
                 }).bindPopup(row.Title);
+
 
                 // Add the marker to the corresponding category layer
                 marker.addTo(categoryLayers[row.Category]);
