@@ -66,6 +66,15 @@
         }); // EDIT - insert or remove ".addTo(map)" before the last semicolon to display by default
         controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
 
+        // Define a green leaf icon
+        var greenLeafIcon = L.icon({
+        iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
+        shadowSize: [50, 64],
+        shadowAnchor: [4, 62]
+
         // Create an object to store layers by category
         var categoryLayers = {};
         var myMarkers = L.featureGroup().addTo(map);
