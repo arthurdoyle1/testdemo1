@@ -48,6 +48,7 @@
             worldCopyJump: false
         });
 
+        var wrappedLongitude = (187.559 + 180) % 360 - 180;
 
         /* Control panel to display map layers */
         var controlLayers = L.control.layers(null, null, {
