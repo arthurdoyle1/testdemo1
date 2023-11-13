@@ -29,17 +29,6 @@
             left: 0;
             width: 50%;
         }
-
-        #form {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            right: 0;
-            width: 50%;
-            background-color: #f0f0f0;
-            padding: 20px;
-        }
     </style>
 
 </head>
@@ -48,16 +37,6 @@
 
     <!-- Insert HTML division tag to layout the map -->
     <div id="map"></div>
-
-    <div id="form">
-        <input type="checkbox" id="cbAdults" checked>Adults
-        <input type="checkbox" id="cbYouth" checked>Youth
-        <input type="checkbox" id="cbSeniors" checked>Seniors
-        <input type="checkbox" id="cbMen" checked>Men
-        <input type="checkbox" id="cbWomen" checked>Women
-        <br>
-        <button id="btnForm">Filter</button>
-    </div>
 
     <!-- Insert Javascript (.js) code to create the map -->
     <script>
@@ -124,43 +103,38 @@
             'View <a href="https://github.com/HandsOnDataViz/leaflet-map-csv" target="_blank">code on GitHub</a>'
         );
 
-        btnForm.onclick = () => filter();
+        // btnForm.onclick = () => filter();
 
-        function filter() {
-
-            myMarkers.clearLayers();
-
-            let myJSONcopy = JSON.parse(JSON.stringify(myJSON));
-
-            let categories = [];
-
-            if (cbAdults.checked) {
-                categories.push('adults');
-            }
-            if (cbYouth.checked) {
-                categories.push('youth');
-            }
-            if (cbSeniors.checked) {
-                categories.push('seniors')
-            }
-            if (cbMen.checked) {
-                categories.push('men');
-            }
-            if (cbWomen.checked) {
-                categories.push('women');
-            }
-
-            for (let i = 0; i < myJSONcopy.length; i++) {
-                for (let j = 0; j < categories.length; j++) {
-                    for (let k = 0; k < myJSONcopy[i].demographic.length; k++)
-                        if (categories[j] == myJSONcopy[i].demographic[k] && !myJSONcopy[i].added) {
-                            L.circleMarker([myJSONcopy[i].lat, myJSONcopy[i].lon]).addTo(myMarkers);
-                            myJSONcopy[i].added = true;
-                            break;
-                        }
-                }
-            }
-        }
+        // function filter() {
+        //     myMarkers.clearLayers();
+        //     let myJSONcopy = JSON.parse(JSON.stringify(myJSON));
+        //     let categories = [];
+        //     if (cbAdults.checked) {
+        //         categories.push('adults');
+        //     }
+        //     if (cbYouth.checked) {
+        //         categories.push('youth');
+        //     }
+        //     if (cbSeniors.checked) {
+        //         categories.push('seniors')
+        //     }
+        //     if (cbMen.checked) {
+        //         categories.push('men');
+        //     }
+        //     if (cbWomen.checked) {
+        //         categories.push('women');
+        //     }
+        //     for (let i = 0; i < myJSONcopy.length; i++) {
+        //         for (let j = 0; j < categories.length; j++) {
+        //             for (let k = 0; k < myJSONcopy[i].demographic.length; k++)
+        //                 if (categories[j] == myJSONcopy[i].demographic[k] && !myJSONcopy[i].added) {
+        //                     L.circleMarker([myJSONcopy[i].lat, myJSONcopy[i].lon]).addTo(myMarkers);
+        //                     myJSONcopy[i].added = true;
+        //                     break;
+        //                 }
+        //         }
+        //     }
+        // }
     </script>
 </body>
 
