@@ -35,7 +35,7 @@
 
 <body>
 
-    <!-- Insert y HTML division tag to layout the map -->
+    <!-- Insert HTML division tag to layout the map -->
     <div id="map"></div>
 
     <!-- Insert Javascript (.js) code to create the map -->
@@ -66,42 +66,6 @@
         }); // EDIT - insert or remove ".addTo(map)" before the last semicolon to display by default
         controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
 
-        // Define custom icons for different categories
-        var iconAdults = L.icon({
-            iconUrl: 'https://github.com/arthurdoyle1/testdemo1/raw/main/military%20icon.png',
-            iconSize: [32, 32],
-            iconAnchor: [16, 32],
-            popupAnchor: [0, -32]
-        });
-
-        var iconYouth = L.icon({
-            iconUrl: 'https://github.com/arthurdoyle1/testdemo1/raw/main/military%20icon.png',
-            iconSize: [32, 32],
-            iconAnchor: [16, 32],
-            popupAnchor: [0, -32]
-        });
-
-        var iconSeniors = L.icon({
-            iconUrl: 'https://github.com/arthurdoyle1/testdemo1/raw/main/military%20icon.png',
-            iconSize: [32, 32],
-            iconAnchor: [16, 32],
-            popupAnchor: [0, -32]
-        });
-
-        var iconMen = L.icon({
-            iconUrl: 'https://github.com/arthurdoyle1/testdemo1/raw/main/Handshake.png',
-            iconSize: [32, 32],
-            iconAnchor: [16, 32],
-            popupAnchor: [0, -32]
-        });
-
-        var iconWomen = L.icon({
-            iconUrl: 'https://github.com/arthurdoyle1/testdemo1/raw/main/Handshake.png',
-            iconSize: [32, 32],
-            iconAnchor: [16, 32],
-            popupAnchor: [0, -32]
-        });
-
         // Create an object to store layers by category
         var categoryLayers = {};
         var myMarkers = L.featureGroup().addTo(map);
@@ -120,32 +84,7 @@
             for (var i in data) {
                 var row = data[i];
 
-                // Choose the appropriate icon based on the category
-                var icon;
-                switch (row.Category) {
-                    case 'adults':
-                        icon = iconAdults;
-                        break;
-                    case 'youth':
-                        icon = iconYouth;
-                        break;
-                    case 'seniors':
-                        icon = iconSeniors;
-                        break;
-                    case 'men':
-                        icon = iconMen;
-                        break;
-                    case 'women':
-                        icon = iconWomen;
-                        break;
-                    default:
-                        // You can provide a default icon if needed
-                        icon = L.icon(); // or specify a default icon
-                        break;
-                }
-
                 var marker = L.marker([row.Latitude, row.Longitude], {
-                    icon: icon,
                     opacity: 1
                 }).bindPopup(row.Title);
 
@@ -164,38 +103,39 @@
             'View <a href="https://github.com/HandsOnDataViz/leaflet-map-csv" target="_blank">code on GitHub</a>'
         );
 
-        btnForm.onclick = () => filter();
+btnForm.onclick = () => filter();
 
-        function filter() {
-            myMarkers.clearLayers();
-            let myJSONcopy = JSON.parse(JSON.stringify(myJSON));
-            let categories = [];
-            if (cbAdults.checked) {
-                categories.push('adults');
-            }
-            if (cbYouth.checked) {
-                categories.push('youth');
-            }
-            if (cbSeniors.checked) {
-                categories.push('seniors')
-            }
-            if (cbMen.checked) {
-                categories.push('men');
-            }
-            if (cbWomen.checked) {
-                categories.push('women');
-            }
-            for (let i = 0; i < myJSONcopy.length; i++) {
-                for (let j = 0; j < categories.length; j++) {
-                    for (let k = 0; k < myJSONcopy[i].demographic.length; k++)
-                        if (categories[j] == myJSONcopy[i].demographic[k] && !myJSONcopy[i].added) {
-                            L.circleMarker([myJSONcopy[i].lat, myJSONcopy[i].lon]).addTo(myMarkers);
-                            myJSONcopy[i].added = true;
-                            break;
-                        }
+function filter() {
+    myMarkers.clearLayers();
+    let myJSONcopy = JSON.parse(JSON.stringify(myJSON));
+    let categories = [];
+    if (cbAdults.checked) {
+        categories.push('adults');
+    }
+    if (cbYouth.checked) {
+        categories.push('youth');
+    }
+    if (cbSeniors.checked) {
+        categories.push('seniors')
+    }
+    if (cbMen.checked) {
+        categories.push('men');
+    }
+    if (cbWomen.checked) {
+        categories.push('women');
+    }
+    for (let i = 0; i < myJSONcopy.length; i++) {
+        for (let j = 0; j < categories.length; j++) {
+            for (let k = 0; k < myJSONcopy[i].demographic.length; k++)
+                if (categories[j] == myJSONcopy[i].demographic[k] && !myJSONcopy[i].added) {
+                    L.circleMarker([myJSONcopy[i].lat, myJSONcopy[i].lon]).addTo(myMarkers);
+                    myJSONcopy[i].added = true;
+                    break;
                 }
-            }
         }
+    }
+}
+
     </script>
 </body>
 
