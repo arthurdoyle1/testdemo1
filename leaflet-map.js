@@ -7,28 +7,28 @@ var iconAdults = L.icon({
 });
 
 var iconYouth = L.icon({
-    iconUrl: 'path/to/youth-icon.png',
+    iconUrl: 'https://github.com/arthurdoyle1/testdemo1/blob/main/military%20icon.png?raw=true',
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
 
 var iconSeniors = L.icon({
-    iconUrl: 'path/to/seniors-icon.png',
+    iconUrl: 'https://github.com/arthurdoyle1/testdemo1/blob/main/military%20icon.png?raw=true',
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
 
 var iconMen = L.icon({
-    iconUrl: 'path/to/men-icon.png',
+    iconUrl: 'https://github.com/arthurdoyle1/testdemo1/blob/main/Handshake.png?raw=true',
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
 });
 
 var iconWomen = L.icon({
-    iconUrl: 'path/to/women-icon.png',
+    iconUrl: 'https://github.com/arthurdoyle1/testdemo1/blob/main/Handshake.png?raw=true',
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32]
