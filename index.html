@@ -101,7 +101,7 @@
                 }
 
                 // Create a marker with a custom icon based on the category
-                var marker = L.marker([parseFloat(row.Latitude), parseFloat(row.Longitude) + 360], {
+               var marker = L.marker([parseFloat(row.Latitude), L.Util.wrapNum(parseFloat(row.Longitude), [-180, 180])], {
                 opacity: 1,
                     icon: L.icon({
                         iconUrl: iconUrls[row.Category],
