@@ -10,7 +10,13 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-    
+    <!-- Load Leaflet.markercluster CSS file -->
+<link rel="stylesheet" href="./node_modules/leaflet.markercluster/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
+<!-- Load Leaflet.markercluster JavaScript file -->
+<script src="./node_modules/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
     
     <!-- Load jQuery and PapaParse to read data from a CSV file -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -133,12 +139,11 @@
             marker.addTo(categoryLayers[row.Category]);
         }
 
-        // Create a marker cluster group
         var markers = L.markerClusterGroup();
+markers.addLayer(L.marker(getRandomLatLng(map)));
+... Add more layers ...
+map.addLayer(markers);
 
-        // For each row in data, create a marker and add it to the marker cluster group
-        for (var i in data) {
-            var row = data[i];
 
             // Create a marker with a custom icon based on the category
             var marker;
