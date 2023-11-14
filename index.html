@@ -70,11 +70,18 @@
 
         // Define icons for each category
         var iconUrls = {
-            'Adults': 'https://www.svgrepo.com/show/449376/handshake.svg',
-            'Youth': 'https://icons.iconarchive.com/icons/custom-icon-design/silky-line-user/512/man-icon.png',
-            'Seniors': 'https://icons.iconarchive.com/icons/custom-icon-design/silky-line-user/512/man-icon.png',
-            'Men': 'https://icons.iconarchive.com/icons/custom-icon-design/silky-line-user/512/man-icon.png',
-            'Women': 'https://icons.iconarchive.com/icons/custom-icon-design/silky-line-user/512/man-icon.png',
+            'Arms control': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'Cultural diplomacy': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'Defence cooperation': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'Defence infrastructure': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'HADR – disaster response': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'Maritime diplomacy': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'Military exercises': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'Military medical diplomacy': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'MIL-POL engagement': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'Sports diplomacy': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'Training': 'https://www.svgrepo.com/show/449376/handshake.svg',
+            'Visit diplomacy': 'https://www.svgrepo.com/show/449376/handshake.svg',
         };
 
         // Create an object to store layers by category
@@ -91,83 +98,45 @@
             }).data;
 
             // For each row in data, create a marker and add it to the map
-            // For each row, columns `Latitude`, `Longitude`, `Title`, and `Category` are required
-// For each row in data, create a marker and add it to the map
-// For each row, columns `Latitude`, `Longitude`, `Title`, and `Category` are required
-for (var i in data) {
-    var row = data[i];
+            for (var i in data) {
+                var row = data[i];
 
-    // Check if the category layer exists, if not, create it
-    if (!categoryLayers[row.Category]) {
-        categoryLayers[row.Category] = L.layerGroup().addTo(map);
-        controlLayers.addOverlay(categoryLayers[row.Category], row.Category);
-    }
+                // Check if the category layer exists, if not, create it
+                if (!categoryLayers[row.Category]) {
+                    categoryLayers[row.Category] = L.layerGroup().addTo(map);
+                    controlLayers.addOverlay(categoryLayers[row.Category], row.Category);
+                }
 
-    // Create a marker with a custom icon based on the category
-    var marker;
-    if (row.Category === 'Seniors' || row.Category === 'Women') {
-        // For Samoa and Tonga, use the provided longitude without wrapping
-        marker = L.marker([parseFloat(row.Latitude), parseFloat(row.Longitude)], {
-            opacity: 1,
-            icon: L.icon({
-                iconUrl: iconUrls[row.Category],
-                iconSize: [20, 20],
-                iconAnchor: [10, 10],
-            })
-        }).bindPopup(row.Title);
-    } else {
-        // For other categories, wrap the longitude within [-180, 180]
-        marker = L.marker([parseFloat(row.Latitude), L.Util.wrapNum(parseFloat(row.Longitude), [-180, 180])], {
-            opacity: 1,
-            icon: L.icon({
-                iconUrl: iconUrls[row.Category],
-                iconSize: [20, 20],
-                iconAnchor: [10, 10],
-            })
-        }).bindPopup(row.Title);
-    }
+                // Create a marker with a custom icon based on the category
+                var marker = L.marker([parseFloat(row.Latitude), parseFloat(row.Longitude)], {
+                    opacity: 1,
+                    icon: L.icon({
+                        iconUrl: iconUrls[row.Category],
+                        iconSize: [20, 20],
+                        iconAnchor: [10, 10],
+                    })
+                }).bindPopup(row.Title);
 
-    // Add the marker to the corresponding category layer
-    marker.addTo(categoryLayers[row.Category]);
-}
-
+                // Add the marker to the corresponding category layer
+                marker.addTo(categoryLayers[row.Category]);
+            }
         });
 
         map.attributionControl.setPrefix(
             'View <a href="https://github.com/HandsOnDataViz/leaflet-map-csv" target="_blank">code on GitHub</a>'
         );
 
+        // Example filter function (modify as needed)
         btnForm.onclick = () => filter();
 
         function filter() {
             myMarkers.clearLayers();
-            let myJSONcopy = JSON.parse(JSON.stringify(myJSON));
-            let categories = [];
-            if (cbAdults.checked) {
-                categories.push('adults');
-            }
-            if (cbYouth.checked) {
-                categories.push('youth');
-            }
-            if (cbSeniors.checked) {
-                categories.push('seniors')
-            }
-            if (cbMen.checked) {
-                categories.push('men');
-            }
-            if (cbWomen.checked) {
-                categories.push('women');
-            }
-            for (let i = 0; i < myJSONcopy.length; i++) {
-                for (let j = 0; j < categories.length; j++) {
-                    for (let k = 0; k < myJSONcopy[i].demographic.length; k++)
-                        if (categories[j] == myJSONcopy[i].demographic[k] && !myJSONcopy[i].added) {
-                            L.circleMarker([myJSONcopy[i].lat, myJSONcopy[i].lon]).addTo(myMarkers);
-                            myJSONcopy[i].added = true;
-                            break;
-                        }
-                }
-            }
+            // Add your filtering logic here based on the new categories
+            // Example: filter by 'Arms control' category
+            // Replace 'Arms control' with the desired category to filter
+            categoryLayers['Arms control'].eachLayer(function (layer) {
+                L.circleMarker([layer._latlng.lat, layer._latlng.lng]).addTo(myMarkers);
+            });
         }
     </script>
 </body>
