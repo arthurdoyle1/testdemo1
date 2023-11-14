@@ -140,45 +140,6 @@
             marker.addTo(categoryLayers[row.Category]);
         }
 
-        // Create a marker cluster group
-        var markers = L.markerClusterGroup();
-
-        // For each row in data, create a marker and add it to the marker cluster group
-        for (var i in data) {
-            var row = data[i];
-
-            // Create a marker with a custom icon based on the category
-            var marker;
-            if (row.Category === 'Seniors' || row.Category === 'Women') {
-                // For Samoa and Tonga, use the provided longitude without wrapping
-                marker = L.marker([parseFloat(row.Latitude), parseFloat(row.Longitude)], {
-                    opacity: 1,
-                    icon: L.icon({
-                        iconUrl: iconUrls[row.Category],
-                        iconSize: [20, 20],
-                        iconAnchor: [10, 10],
-                    })
-                }).bindPopup(row.Title);
-            } else {
-                // For other categories, wrap the longitude within [-180, 180]
-                marker = L.marker([parseFloat(row.Latitude), L.Util.wrapNum(parseFloat(row.Longitude), [-180, 180])], {
-                    opacity: 1,
-                    icon: L.icon({
-                        iconUrl: iconUrls[row.Category],
-                        iconSize: [20, 20],
-                        iconAnchor: [10, 10],
-                    })
-                }).bindPopup(row.Title);
-            }
-
-            // Add the marker to the marker cluster group
-            markers.addLayer(marker);
-        }
-
-        // Add the marker cluster group to the map
-        map.addLayer(markers);
-    });
-
     map.attributionControl.setPrefix(
         'View <a href="https://github.com/HandsOnDataViz/leaflet-map-csv" target="_blank">code on GitHub</a>'
     );
