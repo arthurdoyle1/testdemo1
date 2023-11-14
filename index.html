@@ -19,8 +19,7 @@
     <!-- Load Leaflet.markercluster CSS file -->
     <link rel="stylesheet" href="node_modules\leaflet.markercluster\dist\MarkerCluster.css" />
     <link rel="stylesheet" href="node_modules\leaflet.markercluster\dist\MarkerCluster.Default.css" />
-<!-- Load Leaflet.markercluster JavaScript file -->
-<script src="node_modules\leaflet.markercluster\dist\leaflet.markercluster-src.js"></script>
+
 
     <!-- Position the map with Cascading Style Sheet (CSS) -->>>
     <style>
@@ -45,7 +44,8 @@
 
     <!-- Insert HTML division tag to layout the map -->>
     <div id="map"></div>
-
+<!-- Load Leaflet.markercluster JavaScript file -->
+<script src="node_modules\leaflet.markercluster\dist\leaflet.markercluster-src.js"></script>
 <!-- Insert Javascript (.js) code to create the map -->
 <script>
     // Set up initial map center and zoom level
@@ -109,30 +109,6 @@
             if (!categoryLayers[row.Category]) {
                 categoryLayers[row.Category] = L.layerGroup().addTo(map);
                 controlLayers.addOverlay(categoryLayers[row.Category], row.Category);
-            }
-
-            // Create a marker with a custom icon based on the category
-            var marker;
-            if (row.Category === 'Seniors' || row.Category === 'Women') {
-                // For Samoa and Tonga, use the provided longitude without wrapping
-                marker = L.marker([parseFloat(row.Latitude), parseFloat(row.Longitude)], {
-                    opacity: 1,
-                    icon: L.icon({
-                        iconUrl: iconUrls[row.Category],
-                        iconSize: [20, 20],
-                        iconAnchor: [10, 10],
-                    })
-                }).bindPopup(row.Title);
-            } else {
-                // For other categories, wrap the longitude within [-180, 180]
-                marker = L.marker([parseFloat(row.Latitude), L.Util.wrapNum(parseFloat(row.Longitude), [-180, 180])], {
-                    opacity: 1,
-                    icon: L.icon({
-                        iconUrl: iconUrls[row.Category],
-                        iconSize: [20, 20],
-                        iconAnchor: [10, 10],
-                    })
-                }).bindPopup(row.Title);
             }
 
             // Add the marker to the corresponding category layer
