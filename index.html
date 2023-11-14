@@ -132,7 +132,7 @@ $.get('./data.csv', function (csvString) {
 
             // Add the marker to the corresponding category layer
             marker.addTo(categoryLayers[row.Category]);
-        }
+
 
         // Create a marker cluster group
         var markers = L.markerClusterGroup();
@@ -171,7 +171,8 @@ $.get('./data.csv', function (csvString) {
 
         // Add the marker cluster group to the map
         map.addLayer(markers);
-    });
+    // END: ed8c6549bwf9
+    ;
 
     map.attributionControl.setPrefix(
         'View <a href="https://github.com/HandsOnDataViz/leaflet-map-csv" target="_blank">code on GitHub</a>'
