@@ -1,7 +1,7 @@
-Title,Year,Category,Sender,Reciever,Description,Link,Latitude,Longitude
-Military medical diplomacy,2023,Military medical diplomacy,China,Vanuatu,"Chinese, Vanuatu military doctors complete tumor resection operation on Peace Ark",http://eng.mod.gov.cn/xb/Milit...,-17.734818,168.322021
-HADR – disaster response,2023,HADR – disaster response,Australia,Vanuatu,ADF wraps up Operation Vanuatu Assist after cyclones,https://www.defenceconnect.com...,-19.25359608,169.5996172
-HADR – disaster response,2023,HADR – disaster response,Australia,Vanuatu,HMAS Canberra arrives in Vanuatu following tropical cyclones Judy and Kevin,https://twitter.com/DefenceAus...,-17.7499263,168.2987171
-Maritime security,2023,Maritime security,Australia,Vanuatu,Defence supports Pacific Partners to combat illegal fishing in the region,https://www.defence.gov.au/new...,-5.237060032,178.6685158
-Visit diplomacy,2023,Visit diplomacy,France,Vanuatu,France's surveillance frigate Vendémiaire visits Port Vila,https://twitter.com/jeangene_v...,-17.73845104,168.296284
-MIL-POL engagement,2023,MIL-POL engagement,China,Vanuatu,Chinese police experts arrive in Vanuatu amid political crisis,https://www.reuters.com/world/...,-17.734818,168.322021
+Group,Title,Image,Description,Latitude,Longitude,Category
+a,Fiji,https://www.edx.org/sites/default/files/trinity1.jpg,"Not in the link <a href=""http://www.trincoll.edu"" target=""_blank"">view website</a> more not in the link",-17.4624892,179.2583049,Adults
+a,PNG,https://upload.wikimedia.org/wikipedia/commons/4/41/You_are_here_-_T-shirt.jpg,"<a href=""http://wesleyan.edu"" target=""_blank"">view website</a>",-6.2645902,148.9638467,Youth
+a,Samoa,https://upload.wikimedia.org/wikipedia/commons/4/41/You_are_here_-_T-shirt.jpg,"<a href=""http://conncoll.edu"" target=""_blank"">view website</a>",-16,-170,Seniors
+a,Solomon Islands,https://upload.wikimedia.org/wikipedia/commons/4/41/You_are_here_-_T-shirt.jpg,"<a href=""http://yale.edu"" target=""_blank"">view website</a>",-9.2263493,159.1873907,Men
+a,Tonga,https://upload.wikimedia.org/wikipedia/commons/4/41/You_are_here_-_T-shirt.jpg,"<a href=""http://uconn.edu"" target=""_blank"">view website</a>",-21.132732814412613,-174.19876910603946,Women
+a,Vanuatu,https://upload.wikimedia.org/wikipedia/commons/4/41/You_are_here_-_T-shirt.jpg,"<a href=""http://uconn.edu"" target=""_blank"">view website</a>",-17.742909930601552,168.31752707910337,Women
