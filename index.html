@@ -129,15 +129,16 @@
         // Example filter function (modify as needed)
         btnForm.onclick = () => filter();
 
-        function filter() {
-            myMarkers.clearLayers();
-            // Add your filtering logic here based on the new categories
-            // Example: filter by 'Arms control' category
-            // Replace 'Arms control' with the desired category to filter
-            categoryLayers['Arms control'].eachLayer(function (layer) {
-                L.circleMarker([layer._latlng.lat, layer._latlng.lng]).addTo(myMarkers);
-            });
-        }
+            function filter() {
+                myMarkers.clearLayers();
+                
+                // Iterate over all category layers and add their markers to myMarkers
+                for (var category in categoryLayers) {
+                    categoryLayers[category].eachLayer(function (layer) {
+                        L.circleMarker([layer._latlng.lat, layer._latlng.lng]).addTo(myMarkers);
+                    });
+                }
+            }
     </script>
 </body>
 
